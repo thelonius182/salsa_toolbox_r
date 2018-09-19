@@ -13,7 +13,16 @@ getDiskNr_in_albumNaam <- function(albumnaam){
 # Harmoniseer catalogusnummer en schijfnummer in de naam vd uitzendmac-directory
 # Vb. 1123 -> 1123¶0; 1123-2 -> 1123¶2; 1123 CD 4 -> 1123¶4
 # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
-harm_catdsk <- function(uzm_dir_fragment){
-  result <- sub("^(\\d+) ?(-|cd) ?(\\d+).*$", "\\1#\\3", uzm_dir_fragment, perl=TRUE, ignore.case=TRUE)
-  ifelse(result == uzm_dir_fragment, paste0(uzm_dir_fragment, "#0"), result)
+harmoniseer_catDskNr_dir <- function(uzm_dir_fragment){
+  result <- sub("^(\\d+) ?(-|cd) ?(\\d+).*$", "\\1¶\\3", uzm_dir_fragment, perl=TRUE, ignore.case=TRUE)
+  ifelse(result == uzm_dir_fragment, paste0(uzm_dir_fragment, "¶0"), result)
+}
+
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+# Harmoniseer catalogusnummer en schijfnummer in de tracknaam
+# Vb. 12 Grieg_ Lyric Piec -> 0-12; 1-16 Debussy_ Les Chanso -> 1-16;
+# ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+harmoniseer_catDskNr_track <- function(track){
+  result <- sub("^(\\d{1,3}-\\d{1,3}).*$", "\\1", track, perl=TRUE)
+  ifelse(result == track, paste0("0-", track), result)
 }
