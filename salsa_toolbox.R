@@ -14,6 +14,6 @@ getDiskNr_in_albumNaam <- function(albumnaam){
 # Vb. 1123 -> 1123¶0; 1123-2 -> 1123¶2; 1123 CD 4 -> 1123¶4
 # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
 harm_catdsk <- function(uzm_dir_fragment){
-  result <- sub("^(\\d+) ?(-|cd) ?(\\d+).*$", "\\1¶\\3", uzm_dir_fragment, perl=TRUE, ignore.case=TRUE)
-  ifelse(result == uzm_dir_fragment, paste0(uzm_dir_fragment, "¶0"), result)
+  result <- sub("^(\\d+) ?(-|cd) ?(\\d+).*$", "\\1#\\3", uzm_dir_fragment, perl=TRUE, ignore.case=TRUE)
+  ifelse(result == uzm_dir_fragment, paste0(uzm_dir_fragment, "#0"), result)
 }
