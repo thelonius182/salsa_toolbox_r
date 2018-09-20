@@ -19,10 +19,10 @@ harmoniseer_catDskNr_dir <- function(uzm_dir_fragment){
 }
 
 # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
-# Harmoniseer catalogusnummer en schijfnummer in de tracknaam
-# Vb. 12 Grieg_ Lyric Piec -> 0-12; 1-16 Debussy_ Les Chanso -> 1-16;
+# Harmoniseer schijfnummer en tracknummer in de tracknaam
+# Vb. 12 -> 0-12; 1-16 -> 1-16;
 # ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
-harmoniseer_catDskNr_track <- function(track){
-  result <- sub("^(\\d{1,3}-\\d{1,3}).*$", "\\1", track, perl=TRUE)
-  ifelse(result == track, paste0("0-", track), result)
+harmoniseer_dskTrkNr <- function(track_fragment){
+  result <- sub("^\\d{1,3}(-)\\d{1,3}.*$", "\\1", track_fragment, perl=TRUE)
+  ifelse(result == track_fragment, paste0("0-", track_fragment), track_fragment)
 }
