@@ -2,8 +2,10 @@
 # Verplaats bestelde audio naar MAC en pak uit
 # = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 pacman::p_load(readr, futile.logger, dplyr, yaml, fs, magrittr, lubridate, zip, stringr)
-
+print(paste0("audio mover job ", now()))
 src_audio <- dir_ls(path = "C:/Users/gergiev/Downloads/", type = "file", regexp = "Bestelling#.*\\.zip") 
+
+stopifnot("no error, just stopping as there are no files to move & unpack" = length(src_audio) > 0)
 
 for (f1 in src_audio) {
   src_audio_file <- path_file(f1)
