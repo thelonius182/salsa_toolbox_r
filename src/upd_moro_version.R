@@ -43,7 +43,7 @@ moro_def_upd <- moro_def |>
 write_file(moro_def_upd, moro_def_qfn, append = F)
 sprintf("Updated %s", moro_def_qfn)
 
-moro_def_qfn <- "C:/Users/nipper/r_projects/released/cz_wpgidsweek/config_prd.yaml"
+moro_def_qfn <- "C:/Users/nipper/r_projects/released/cz_wpgidsweek/config.yaml"
 moro_def <- read_file(moro_def_qfn)
 moro_def_upd <- moro_def |> 
   str_replace(pattern = "modelrooster_versie: .\\d{8}.", paste0('modelrooster_versie: "', opts$version, '"'))
