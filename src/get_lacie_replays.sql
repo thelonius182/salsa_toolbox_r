@@ -33,7 +33,7 @@ JOIN wp_term_taxonomy tt_trid
 -- enforce that this TRID has BOTH nl AND en posts
 WHERE
       r.post_type = 'programma_woj'
-  AND o.post_title = 'vocal jazz' -- get LaCie-replays for this title
+  AND o.post_title = 'door de mazen van het net' -- get LaCie-replays for this title
   AND EXISTS (
         SELECT 1
         FROM wp_term_relationships tr_nl

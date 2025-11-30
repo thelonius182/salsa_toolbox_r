@@ -71,7 +71,7 @@ move_with_retry <- function(src, dst, tries = 3, wait = 0.5) {
 #### Configuration --------------------------------------------------------
 
 # -. path to Synology ----
-base_dir <- "//CZ-synology/WoJ HH/Vocal Jazz"
+base_dir <- "//CZ-synology/WoJ HH/Mazen"
 
 # -. dry-run ----
 # set to FALSE when satisfied with preview
@@ -135,11 +135,11 @@ if (dry_run) {
   # -. apply wysiwyg ----
   # and keep valid ones only
   plan_prep <- lacie_replays_combi |> mutate(fnu_wysiwyg = paste0(format_dutch(original_date), 
-                                                                  "_060_vocal_jazz.", fnu_ext),
+                                                                  "_060_door_de_mazen_vh_net.", fnu_ext),
                                              new_path = paste0(path_dir(path), "/", fnu_wysiwyg)) |> 
     filter(!is.na(original_id)) 
   
-  plan_log <- plan_prep |> select(old_path = path, new_path, replay_id:original_date)
+  plan_log <- plan_prep |> select(original_id, original_date, new_path, replay_id, replay_date, old_path = path)
   plan <- plan_prep |> select(old_path = path, new_path)
   
   flog.info("Dry run mode: no files renamed. Set dry_run <- FALSE to apply.")
